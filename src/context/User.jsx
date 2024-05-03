@@ -14,6 +14,7 @@ export const UserProvider = ({ children }) => {
   const logout = () => {
     setIsLoggedIn(false);
   };
+
   const login = () => {
     setIsLogginDialogOpen(true);
   };

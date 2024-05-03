@@ -2,11 +2,37 @@
   "products": [
     {
       "id": "1",
-      "name": "Tractor",
+      "name": "tractor",
       "price": 500,
       "quantity": 1000,
-      "description": "very nice"
+      "description": "very nice tractor"
     }
   ],
-  "comments": [{ "productId": 1, "text": "nice", "id": "1" }]
+  "comments": [
+    {
+      "productId": 1,
+      "text": "nice traktor",
+      "id": "1"
+    },
+    {
+      "id": "6ca6",
+      "productId": 1,
+      "text": "good"
+    },
+    {
+      "id": "4619",
+      "productId": 1,
+      "text": "new"
+    },
+    {
+      "id": "e86f",
+      "productId": 1,
+      "text": "bad"
+    },
+    {
+      "id": "14d5",
+      "productId": 1,
+      "text": "qwert"
+    }
+  ]
 }

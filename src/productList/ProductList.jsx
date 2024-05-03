@@ -8,7 +8,7 @@ export const ProductList = () => {
 
   return (
     <TableContainer>
-      {products.length === 0 && 'Loader'}
+      {products.length === 0 && 'Loading'}
       <Table>
         <ProductListTableHead />
         <TableBody>

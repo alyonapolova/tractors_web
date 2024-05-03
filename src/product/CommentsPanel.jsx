@@ -1,24 +1,36 @@
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, Button, Paper, TextField, Typography } from '@mui/material';
+import { string } from 'prop-types';
 import { useComments } from './useComments';
-import PropTypes from 'prop-types';
 
 export const CommentsPanel = ({ productId }) => {
-  const { comments } = useComments(productId);
-  console.log(comments);
+  const { comments, newComment, handleChange, handleSubmit } =
+    useComments(productId);
+
   return (
     <>
       <Typography variant="h4" component="h2">
         Comments
       </Typography>
-      <TextField fullWidth label="Write a comment" multiline rows={2} />
+      <TextField
+        value={newComment}
+        onChange={handleChange}
+        fullWidth
+        label="Write a comment"
+        multiline
+        rows={2}
+      />
       <Box sx={{ py: 1, display: 'flex', justifyContent: 'flex-end' }}>
-        <Button>Comment</Button>
+        <Button onClick={handleSubmit}>Comment</Button>
       </Box>
-      {JSON.stringify(comments)}
+      {comments.map((comment) => (
+        <Paper key={comment.id} sx={{ mb: 1, p: 1, whiteSpace: 'pre-wrap' }}>
+          {comment.text}
+        </Paper>
+      ))}
     </>
   );
 };
 
 CommentsPanel.propTypes = {
-  productId: PropTypes.string.isRequired,
+  productId: string.isRequired,
 };
