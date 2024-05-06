@@ -3,6 +3,7 @@ import { Page } from '../layout/Page';
 import { useProduct } from './useProduct';
 import { ProductInfo } from './ProductInfo';
 import { CommentsPanel } from './CommentsPanel';
+import { Clock } from '../Clock';
 
 export const ProductPage = () => {
   const { productData, notFound } = useProduct();
@@ -26,5 +27,10 @@ export const ProductPage = () => {
     );
   }
 
-  return <Page>{content}</Page>;
+  return (
+    <>
+      <Clock />
+      <Page>{content}</Page>;
+    </>
+  );
 };

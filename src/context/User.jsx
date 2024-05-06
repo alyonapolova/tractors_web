@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react';
-import { LoginDialog } from '../login/LoginDialog';
+import { LoginDialog } from '../features/user/components/login/LoginDialog';
 
 export const UserContext = createContext({
   isLoggedIn: false,

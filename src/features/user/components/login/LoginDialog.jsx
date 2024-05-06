@@ -9,20 +9,31 @@ import {
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeLoginDialog } from '../../actions/closeLoginDialog';
+import { selectorIsLogginDialogOpen } from '../../userSlice';
 
-export const LoginDialog = ({ open, onClose, onSubmit }) => {
+export const LoginDialog = () => {
   const [values, setValues] = useState({ email: '', password: '' });
+
+  const dispatch = useDispatch();
+
+  const open = useSelector(selectorIsLogginDialogOpen);
 
   const handleChange = (field) => (e) => {
     setValues({ ...values, [field]: e.target.value });
   };
 
+  const handleClose = () => {
+    dispatch(closeLoginDialog());
+  };
+
   const handleSubmit = () => {
-    onSubmit(values.email, values.password);
+    // onSubmit(values.email, values.password);
   };
 
   return (
-    <Dialog open={open} onClose={onClose}>
+    <Dialog open={open} onClose={handleClose}>
       <DialogTitle>
         <DialogContent>
           <DialogContentText>Enter your email and password</DialogContentText>
@@ -49,7 +60,7 @@ export const LoginDialog = ({ open, onClose, onSubmit }) => {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose} color="secondary">
+          <Button onClick={handleClose} color="secondary">
             Close
           </Button>
           <Button onClick={handleSubmit}>Login</Button>
@@ -57,10 +68,4 @@ export const LoginDialog = ({ open, onClose, onSubmit }) => {
       </DialogTitle>
     </Dialog>
   );
-};
-
-LoginDialog.propTypes = {
-  open: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
 };
