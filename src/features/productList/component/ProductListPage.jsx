@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { Page } from '../layout/Page';
+import { Page } from '../../../layout/Page';
 import { ProductList } from './ProductList';
-import { usePageTitle } from '../context/PageTitle';
+import { usePageTitle } from '../../../context/PageTitle';
 
 export const ProductListPage = () => {
   const { setTitle } = usePageTitle();

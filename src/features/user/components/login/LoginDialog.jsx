@@ -12,6 +12,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeLoginDialog } from '../../actions/closeLoginDialog';
 import { selectorIsLogginDialogOpen } from '../../userSlice';
+import { login } from '../../actions/login.js';
 
 export const LoginDialog = () => {
   const [values, setValues] = useState({ email: '', password: '' });
@@ -29,7 +30,9 @@ export const LoginDialog = () => {
   };
 
   const handleSubmit = () => {
-    // onSubmit(values.email, values.password);
+    const payload = { password: values.password };
+
+    dispatch(login(payload));
   };
 
   return (

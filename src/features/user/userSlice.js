@@ -13,6 +13,15 @@ export const userSlice = (state = initialState, action) => {
     case UserActionTypes.CLOSE_DIALOG: {
       return { ...state, isLogginDialogOpen: false };
     }
+    case UserActionTypes.LOGIN: {
+      if (action.payload.password === 'admin') {
+        return { ...state, isLoggedIn: true, isLogginDialogOpen: false };
+      }
+      return state;
+    }
+    case UserActionTypes.LOGOUT: {
+      return { ...state, isLoggedIn: false };
+    }
     default:
       return state;
   }

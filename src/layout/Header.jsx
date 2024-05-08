@@ -7,15 +7,30 @@ import {
   Toolbar,
   Typography,
 } from '@mui/material';
-import { useContext } from 'react';
+
 import { usePageTitle } from '../context/PageTitle';
-import { UserContext } from '../context/User';
+
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { openLoginDialog } from '../features/user/actions/openLoginDialog';
+import { logout } from '../features/user/actions/logout';
+
 
 export const Header = () => {
   const titleContext = usePageTitle();
-  const { isLoggedIn, login, logout } = useContext(UserContext);
+
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+
+  const handleLogin = () => {
+    dispatch(openLoginDialog());
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
 
   const handleHome = () => {
     navigate('/product-list');
@@ -39,11 +54,11 @@ export const Header = () => {
             {title}
           </Typography>
           {isLoggedIn ? (
-            <Button color="inherit" onClick={logout}>
+            <Button color="inherit" onClick={handleLogout}>
               Logout
             </Button>
           ) : (
-            <Button color="inherit" onClick={login}>
+            <Button color="inherit" onClick={handleLogin}>
               Login
             </Button>
           )}

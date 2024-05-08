@@ -10,18 +10,11 @@ import {
   BrowserRouter as Router,
   Routes,
 } from 'react-router-dom';
-import { ProductListPage } from './productList/ProductListPage';
-import { ProductPage } from './product/ProductPage';
 import { LoginDialog } from './features/user/components/login/LoginDialog';
-import { useDispatch } from 'react-redux';
-import { openLoginDialog } from './features/user/actions/openLoginDialog';
+import { ProductListPage } from './features/productList/component/ProductListPage';
+import { ProductPage } from './product/ProductPage';
 
 function App() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(openLoginDialog());
-  }, []);
   return (
     <PageTitleProvider>
       <UserProvider>

@@ -1,10 +1,11 @@
 import { Table, TableBody, TableContainer } from '@mui/material';
 import { ProductListTableHead } from './ProductListTableHead';
 import { ProductListRow } from './ProductListRow';
-import { useProducts } from './useProducts';
+import { useSelector } from 'react-redux';
+import { selectProductList } from '../productListSlice';
 
 export const ProductList = () => {
-  const products = useProducts();
+  const products = useSelector(selectProductList);
 
   return (
     <TableContainer>
