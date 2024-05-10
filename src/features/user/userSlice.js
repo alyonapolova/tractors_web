@@ -30,3 +30,5 @@ export const userSlice = (state = initialState, action) => {
 export function selectorIsLogginDialogOpen(state) {
   return state.user.isLogginDialogOpen;
 }
+
+export const selectIsLoggedIn = (state) => state.user.isLoggedIn;

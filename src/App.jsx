@@ -12,7 +12,7 @@ import {
 } from 'react-router-dom';
 import { LoginDialog } from './features/user/components/login/LoginDialog';
 import { ProductListPage } from './features/productList/component/ProductListPage';
-import { ProductPage } from './product/ProductPage';
+import { ProductPage } from './features/product/component/ProductPage';
 
 function App() {
   return (
