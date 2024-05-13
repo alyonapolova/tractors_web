@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import './App.css';
 import { Header } from './layout/Header';
 import { CssBaseline } from '@mui/material';
@@ -36,3 +36,25 @@ function App() {
 }
 
 export default App;
+
+// const BestForm = () => {
+//   const [controlled, setControlled] = useState('default state');
+//   const uncontrolled = useRef(null);
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     console.log(uncontrolled.current?.value);
+//   };
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <label>controlled: {controlled}</label>
+//       <input
+//         value={controlled}
+//         onChange={(e) => setControlled(e.target.value)}
+//       />
+//       <label>uncontrolled: {uncontrolled.current?.value}</label>
+//       <input ref={uncontrolled} />
+//       <input type="submit" />
+//     </form>
+//   );
+// };

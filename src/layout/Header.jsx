@@ -12,9 +12,7 @@ import { usePageTitle } from '../context/PageTitle';
 
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { openLoginDialog } from '../features/user/actions/openLoginDialog';
-import { logout } from '../features/user/actions/logout';
-
+import { logout, openLoginDialog } from '../features/user/userSlice';
 
 export const Header = () => {
   const titleContext = usePageTitle();

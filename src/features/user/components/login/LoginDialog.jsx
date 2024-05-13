@@ -10,9 +10,11 @@ import {
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeLoginDialog } from '../../actions/closeLoginDialog';
-import { selectorIsLogginDialogOpen } from '../../userSlice';
-import { login } from '../../actions/login.js';
+import {
+  closeLoginDialog,
+  login,
+  selectorIsLogginDialogOpen,
+} from '../../userSlice';
 
 export const LoginDialog = () => {
   const [values, setValues] = useState({ email: '', password: '' });

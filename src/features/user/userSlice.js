@@ -1,31 +1,34 @@
-import { UserActionTypes } from './actions/actionTypes';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isLoggedIn: false,
   isLogginDialogOpen: false,
 };
 
-export const userSlice = (state = initialState, action) => {
-  switch (action.type) {
-    case UserActionTypes.OPEN_DIALOG: {
-      return { ...state, isLogginDialogOpen: true };
-    }
-    case UserActionTypes.CLOSE_DIALOG: {
-      return { ...state, isLogginDialogOpen: false };
-    }
-    case UserActionTypes.LOGIN: {
+export const userSlice = createSlice({
+  name: 'user',
+  initialState,
+  reducers: {
+    openLoginDialog: (state) => {
+      state.isLogginDialogOpen = true;
+    },
+    closeLoginDialog: (state) => {
+      state.isLogginDialogOpen = false;
+    },
+    login: (state, action) => {
       if (action.payload.password === 'admin') {
-        return { ...state, isLoggedIn: true, isLogginDialogOpen: false };
+        state.isLoggedIn = true;
+        state.isLogginDialogOpen = false;
       }
-      return state;
-    }
-    case UserActionTypes.LOGOUT: {
-      return { ...state, isLoggedIn: false };
-    }
-    default:
-      return state;
-  }
-};
+    },
+    logout: (state) => {
+      state.isLoggedIn = false;
+    },
+  },
+});
+
+export const { openLoginDialog, closeLoginDialog, login, logout } =
+  userSlice.actions;
 
 export function selectorIsLogginDialogOpen(state) {
   return state.user.isLogginDialogOpen;

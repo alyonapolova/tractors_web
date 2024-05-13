@@ -1,10 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectComments } from '../productSlice';
-import { selectIsLoggedIn } from '../../user/userSlice';
-import { fetchAddCommentThunk } from '../actions/thunk/fetchAddCommentThunk';
+import {
+  fetchAddCommentThunk,
+  fetchCommentsThunk,
+  selectComments,
+} from '../productSlice';
+import { openLoginDialog, selectIsLoggedIn } from '../../user/userSlice';
 import { useParams } from 'react-router-dom';
-import { openLoginDialog } from '../../user/actions/openLoginDialog';
-import { useState } from 'react';
+
+import { useEffect, useState } from 'react';
 
 export const useComments = () => {
   const { productId } = useParams();
@@ -13,10 +16,14 @@ export const useComments = () => {
   const comments = useSelector(selectComments);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
-  console.log(isLoggedIn);
+
   const handleChange = (e) => {
     setNewComment(e.target.value);
   };
+
+  useEffect(() => {
+    dispatch(fetchCommentsThunk(productId));
+  }, [isLoggedIn]);
 
   const handleSubmit = () => {
     if (!isLoggedIn) {
@@ -26,6 +33,8 @@ export const useComments = () => {
     if (newComment.trim()) {
       dispatch(fetchAddCommentThunk({ productId, text: newComment }));
     }
+
+    setNewComment('');
   };
 
   return { comments, handleSubmit, handleChange, newComment };

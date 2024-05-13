@@ -5,9 +5,8 @@ import { ProductInfo } from './ProductInfo';
 import { CommentsPanel } from './CommentsPanel';
 import { Clock } from '../../../Clock';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectProduct } from '../productSlice';
+import { fetchProductThunk, selectProduct } from '../productSlice';
 import { useEffect } from 'react';
-import { fetchProductThunk } from '../actions/thunk/fetchProductThunk';
 import { useParams } from 'react-router-dom';
 
 export const ProductPage = () => {
@@ -46,7 +45,7 @@ export const ProductPage = () => {
   return (
     <>
       <Clock />
-      <Page>{content}</Page>;
+      <Page>{content}</Page>
     </>
   );
 };

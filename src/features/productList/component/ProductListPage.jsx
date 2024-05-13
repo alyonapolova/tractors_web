@@ -2,10 +2,8 @@ import { useEffect } from 'react';
 import { Page } from '../../../layout/Page';
 import { ProductList } from './ProductList';
 import { usePageTitle } from '../../../context/PageTitle';
-import { getProducts } from '../../../api/products';
 import { useDispatch } from 'react-redux';
-import { fetchProductListSuccess } from '../actions/fetchProductListSuccess';
-import { fetchProductListThunk } from '../actions/thunk/fetchProductListThunk';
+import { fetchProductListThunk } from '../productListSlice';
 
 export const ProductListPage = () => {
   const { setTitle } = usePageTitle();

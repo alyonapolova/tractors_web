@@ -1,14 +1,26 @@
-import { productListActionTypes } from './actions/actionTypes';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { getProducts } from '../../api/products';
 
 const initialState = {
   items: [],
 };
 
-export const productListSlice = (state = initialState, action) => {
-  if (action.type === productListActionTypes.FETCH_SUCCESS) {
-    return { items: action.payload.list };
+export const fetchProductListThunk = createAsyncThunk(
+  'productList/fetchProductListThunk',
+  async () => {
+    return await getProducts();
   }
-  return state;
-};
+);
+
+export const productListSlice = createSlice({
+  name: 'productList',
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(fetchProductListThunk.fulfilled, (state, action) => {
+      state.items = action.payload;
+    });
+  },
+});
 
 export const selectProductList = (state) => state.productList.items;
